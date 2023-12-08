@@ -1,9 +1,9 @@
 1.) App DOM elements - 
-(a.) Initial render (DONE)
-(i.) Header
-(ii.) Filter (initially shows only filter)
-(iii.) Tasks
-(iv.) Arrows
+(a.) Initial render
+(i.) Header -- (DONE)
+(ii.) Filter (initially shows only "filter") -- (DONE)
+(iii.) Tasks - Nothing is displayed when no task is available - also acts as an initial state -- (DONE)
+(iv.) Arrows -- (DONE)
 
 2.) Filter
 (a.) User interaction - onClick
@@ -24,4 +24,4 @@ Initial render - all check boxes are unselected
 (b.) Border color is grey and reduce size when no more tasks to be displayed
 (c.) Border color is black and larger size when tasks remain to be displayed
 
-4.) Test API call
+4.) Test API call -- (DONE)

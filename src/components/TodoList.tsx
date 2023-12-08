@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import './todoList.scss';
+import { useEffect, useState } from "react";
+import "./todoList.scss";
 import { fetchTasks } from "../utils/apiCalls";
 import { TaskInterface } from "../interfaces";
-
 
 const TodoList = () => {
   const [tasks, setTasks] = useState<TaskInterface[] | null>(null);
 
-  fetchTasks()
+  useEffect(() => {
+    fetchTasks()
     .then((tasks) => {
       // console.log("Tasks:", tasks);
       setTasks(tasks);
@@ -15,6 +15,8 @@ const TodoList = () => {
     .catch((error) => {
       console.error("Failed to fetch tasks:", error);
     });
+  }, []);
+
   return (
     <div className="todo-list">
       <h3 className="heading">To Do List</h3>
@@ -27,15 +29,23 @@ const TodoList = () => {
         ></div>
       </div>
       <div className="task-wrapper" role="display-tasks">
-        <div className="task" data-testid="task"></div>
+        {tasks?.map((task, index) => {
+          return (
+            <div className="task" key={index} data-testid="task">
+              <p className="name">{task.name}</p>
+              <p className="tag">{task.tag}</p>
+              <p className="status">{task.status}</p>
+            </div>
+          );
+        })}
       </div>
       <div className="arrow-wrapper" role="navigation">
-        <div className="left" role="left">
+        <button className="left" role="left">
           Left
-        </div>
-        <div className="right" role="right">
+        </button>
+        <button className="right" role="right">
           Right
-        </div>
+        </button>
       </div>
     </div>
   );

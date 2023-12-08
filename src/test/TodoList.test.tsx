@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, test } from "vitest";
 import TodoList from "../components/TodoList.tsx";
+import { fetchTasks } from "../utils/apiCalls.ts";
 
 describe("Initial render", () => {
   beforeEach(() => {
@@ -26,12 +27,27 @@ describe("Initial render", () => {
     expect(filterElements.style.display).toBe("none");
   });
 
-  test("Task wrapper and each task must exist", () => {
+  // Ensure that the task wrapper exists in the DOM in both cases
+  test("Task wrapper must exist", () => {  
     const taskWrapperElement = screen.getByRole("display-tasks");
     expect(taskWrapperElement).toBeDefined();
+  });
+ 
+  test("Task should not exist when tasks is null", async () => {
+    // Mock the fetchTasks function to return a resolved Promise with null
+    globalThis.fetch = vi.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(null), // Simulate a null response
+      })
+    ) as any;
 
-    const taskElement = screen.getByTestId("task");
-    expect(taskElement).toBeDefined();
+    await fetchTasks();
+
+    const taskElement = screen.queryByTestId("task");
+    expect(taskElement).toBeNull();
+
+    globalThis.fetch = window.fetch;
   });
 
   test("Arrow wrapper and arrows must exist", () => {
@@ -88,3 +104,7 @@ describe("Test API Call", () => {
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 });
+
+// describe("User interaction and functionality", () => {
+//   test()
+// })
