@@ -1,0 +1,25 @@
+1.) App DOM elements - 
+(a.) Initial render (DONE)
+(i.) Header
+(ii.) Filter (initially shows only filter)
+(iii.) Tasks
+(iv.) Arrows
+
+2.) Filter
+(a.) User interaction - onClick
+(i.) status - check boxes
+Initial render - all check boxes are unselected
+User interaction - onClick
+Initial render - check for a default state
+(ii) tag - check boxes
+User interaction - onClick
+Initial render - all check boxes are unselected
+
+2.) Display task
+(a.) User interaction - hover effect
+(b.) Check for pagination - only 3 tasks per page
+
+3.) Arrows
+(a.) User interaction - onClick
+(b.) Border color is grey and reduce size when no more tasks to be displayed
+(c.) Border color is black and larger size when tasks remain to be displayed
