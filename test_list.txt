@@ -23,3 +23,5 @@ Initial render - all check boxes are unselected
 (a.) User interaction - onClick
 (b.) Border color is grey and reduce size when no more tasks to be displayed
 (c.) Border color is black and larger size when tasks remain to be displayed
+
+4.) Test API call
