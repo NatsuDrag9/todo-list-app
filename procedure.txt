@@ -1,0 +1,3 @@
+1.) Created a test list
+2.) Implemented tests for initial rendering of the layout without functionality of each DOM/component
+3.) 
