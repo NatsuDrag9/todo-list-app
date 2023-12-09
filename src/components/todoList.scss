@@ -1,7 +1,7 @@
-@import '../App.css';
+@import "../App.css";
 
 .todo-list {
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -19,7 +19,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.7rem;
-    font-family: 'Bookman Old Style', serif;
+    font-family: "Bookman Old Style", serif;
   }
 
   .filter {
@@ -57,7 +57,6 @@
     }
 
     .task:hover {
-
     }
   }
 
@@ -66,8 +65,22 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: start;
-    width: 7rem;
+    width: 10rem;
     height: 3rem;
     /* border: 1px solid blue; */
+    .previous,
+    .next {
+      // border: 1px solid grey;
+      width: 70px;
+      height: 30px;
+      cursor: pointer;
+    }
+
+    .previous:hover,
+    .next:hover {
+      border: 2px solid black;
+      width: 55px;
+      height: 30px;
+    }
   }
 }

@@ -1,4 +1,5 @@
 1.) Created a test list
 2.) Implemented tests for initial rendering of the layout without functionality of each DOM/component
 3.) Implemented mock tests for API call and created a mock API call to task_list.json
-4.) 
+4.) Using axios because fetch requires absolute path as the parameter
+5.) Implemented test for pagination
