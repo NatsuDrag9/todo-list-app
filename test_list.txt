@@ -9,11 +9,11 @@
 (a.) User interaction - onClick
 (i.) status - check boxes
 Initial render - all check boxes are unselected -- (DONE)
-User interaction and functionality - onClick
+User interaction and functionality - onClick -- (DONE)
 Initial render - check for a default state
 (ii) tag - check boxes
-User interaction and functionality - onClick
-Initial render - all check boxes are unselected
+User interaction and functionality - onClick -- (DONE)
+Initial render - all check boxes are unselected -- (DONE)
 
 2.) Display task 
 (a.) User interaction - hover effect -- NO TEST FOR THIS AS IT'S NOT INLINE CSS STYLE
