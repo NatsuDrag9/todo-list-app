@@ -133,6 +133,15 @@ describe("User interaction and functionality", () => {
     await screen.findByTestId("task1");
   });
 
+  test("Clicking filter should increase height", () => {
+    fireEvent.click(screen.getByText("Filter"));
+    expect(screen.getByRole("filter")).toHaveClass("filter clicked");
+  })
+
+  test("Clicking filter should add filter elements", () => {
+    
+  })
+
   test("Clicking pagination buttons should display the correct tasks", async () => {
   
     // Initial page (page 1)

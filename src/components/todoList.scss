@@ -28,13 +28,18 @@
   .filter {
     display: flex;
     width: 50%;
-    height: 10%;
-    // border: 1px solid black;
+    height: 2%;
+    border: 1px solid black;
+    transition: height 0.3s ease;
     a {
       text-decoration: underline;
       cursor: pointer;
       color: rgb(63, 62, 62);
     }
+  }
+
+  .filter.clicked {
+    height: 15%;
   }
 
   /* .filter-elements {

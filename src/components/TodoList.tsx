@@ -7,6 +7,7 @@ import { act } from "react-dom/test-utils";
 const TodoList = () => {
   const [tasks, setTasks] = useState<TaskInterface[] | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isFilterClicked, setIsFilterClicked] = useState<boolean>(false);
   const tasksPerPage = 3;
 
   useEffect(() => {
@@ -33,8 +34,11 @@ const TodoList = () => {
   return (
     <div className="todo-list">
       <h3 className="heading">To Do List</h3>
-      <div className="filter" role="filter">
-        <a>Filter</a>
+      <div
+        className={`filter ${isFilterClicked ? "clicked" : ""}`}
+        role="filter"
+      >
+        <a onClick={() => setIsFilterClicked(!isFilterClicked)}>Filter</a>
         <div
           className="filter-elements"
           style={{ display: "none" }}
