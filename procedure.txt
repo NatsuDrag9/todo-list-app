@@ -3,3 +3,5 @@
 3.) Implemented mock tests for API call and created a mock API call to task_list.json
 4.) Using axios because fetch requires absolute path as the parameter
 5.) Implemented test for pagination
+6.) Implemeted initial rendering of checkboxes
+7.) Implemented filter functionality
