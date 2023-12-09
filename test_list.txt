@@ -8,11 +8,11 @@
 2.) Filter
 (a.) User interaction - onClick
 (i.) status - check boxes
-Initial render - all check boxes are unselected
-User interaction - onClick
+Initial render - all check boxes are unselected -- (DONE)
+User interaction and functionality - onClick
 Initial render - check for a default state
 (ii) tag - check boxes
-User interaction - onClick
+User interaction and functionality - onClick
 Initial render - all check boxes are unselected
 
 2.) Display task 

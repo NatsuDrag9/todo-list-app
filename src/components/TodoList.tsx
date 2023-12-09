@@ -42,7 +42,16 @@ const TodoList = () => {
         <div
           className={`filter-elements ${isFilterClicked ? "" : "hide"}`}
           data-testid="filter-elements"
-        ></div>
+        >
+          <label>
+            <input type="checkbox" value="Incomplete" checked={false} />
+            Incomplete
+          </label>
+          <label>
+            <input type="checkbox" value="Complete" checked={false} />
+            Complete
+          </label>
+        </div>
       </div>
       <div className="task-wrapper" role="display-tasks">
         {paginatedTasks.map((task, index) => {

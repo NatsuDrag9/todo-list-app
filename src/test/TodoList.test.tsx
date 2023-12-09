@@ -138,9 +138,23 @@ describe("User interaction and functionality", () => {
     expect(screen.getByTestId("filter-elements")).toHaveClass("filter-elements");
   })
 
-  // test("Clicking filter should add filter elements", () => {
+  test("Checkboxes are unselected initially", () => {
+    // Check the status checkboxes
+    const incompleteCheckbox = screen.getByRole("checkbox", { name: "Incomplete" });
+    const completeCheckbox = screen.getByRole("checkbox", { name: "Complete" });
+    expect(incompleteCheckbox).not.toBeChecked();
+    expect(completeCheckbox).not.toBeChecked();
+  
+    // Check the tag checkboxes (assuming there are some tags)
+    // const tagCheckboxes = screen.getAllByRole("checkbox", { name: /Tag:/ });
+    // tagCheckboxes.forEach((checkbox) => {
+    //   expect(checkbox).not.toBeChecked();
+    // });
+  });
+
+  test("Clicking filter should display all filter elements", () => {
     
-  // })
+  })
 
   test("Clicking pagination buttons should display the correct tasks", async () => {
   
