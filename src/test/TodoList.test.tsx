@@ -146,10 +146,10 @@ describe("User interaction and functionality", () => {
     expect(completeCheckbox).not.toBeChecked();
   
     // Check the tag checkboxes (assuming there are some tags)
-    // const tagCheckboxes = screen.getAllByRole("checkbox", { name: /Tag:/ });
-    // tagCheckboxes.forEach((checkbox) => {
-    //   expect(checkbox).not.toBeChecked();
-    // });
+    const tagCheckboxes = screen.getAllByTestId("tag-checkbox");
+    tagCheckboxes.forEach((checkbox) => {
+      expect(checkbox).not.toBeChecked();
+    });
   });
 
   test("Clicking filter should display all filter elements", () => {

@@ -3,11 +3,14 @@ import "./todoList.scss";
 import { fetchTasks } from "../utils/apiCalls";
 import { TaskInterface } from "../interfaces";
 import { act } from "react-dom/test-utils";
+import { statusData } from "../misc/data";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState<TaskInterface[] | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [isFilterClicked, setIsFilterClicked] = useState<boolean>(false);
+  const [selectedStatus, setSelectedStatus] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const tasksPerPage = 3;
 
   useEffect(() => {
@@ -27,9 +30,42 @@ const TodoList = () => {
     setCurrentPage(page);
   };
 
-  const paginatedTasks = tasks
-    ? tasks.slice((currentPage - 1) * tasksPerPage, currentPage * tasksPerPage)
+  const toggleStatusFilter = (status: string) => {
+    // Toggle the selected status
+    if (selectedStatus.includes(status)) {
+      setSelectedStatus(selectedStatus.filter((s) => s !== status));
+    } else {
+      setSelectedStatus([...selectedStatus, status]);
+    }
+  };
+
+  const toggleTagFilter = (tag: string) => {
+    // Toggle the selected tag
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter((t) => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+
+  // Filter tasks based on selected status and tags
+  const filteredTasks = tasks
+    ? tasks.filter(
+        (task) =>
+          (selectedStatus.length === 0 ||
+            selectedStatus.includes(task.status)) &&
+          (selectedTags.length === 0 || selectedTags.includes(task.tag))
+      )
     : [];
+
+  const paginatedTasks = filteredTasks.slice(
+    (currentPage - 1) * tasksPerPage,
+    currentPage * tasksPerPage
+  );
+
+  // const paginatedTasks = tasks
+  //   ? tasks.slice((currentPage - 1) * tasksPerPage, currentPage * tasksPerPage)
+  //   : [];
 
   return (
     <div className="todo-list">
@@ -43,14 +79,44 @@ const TodoList = () => {
           className={`filter-elements ${isFilterClicked ? "" : "hide"}`}
           data-testid="filter-elements"
         >
-          <label>
-            <input type="checkbox" value="Incomplete" checked={false} />
-            Incomplete
-          </label>
-          <label>
-            <input type="checkbox" value="Complete" checked={false} />
-            Complete
-          </label>
+          <div className="status-wrapper">
+            <h4>Status: </h4>
+            <div className="checkbox-wrapper">
+              {statusData.map((status) => {
+                return (
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={status}
+                      checked={false}
+                      onChange={() => toggleStatusFilter(status)}
+                    />
+                    {status}
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+          <div className="tags-wrapper">
+            <h4>Tags: </h4>
+            <div className="checkbox-wrapper">
+              {tasks &&
+                Array.from(new Set(tasks.map((task) => task.tag))).map(
+                  (tag) => (
+                    <label key={tag}>
+                      <input
+                        type="checkbox"
+                        value={tag}
+                        checked={selectedTags.includes(tag)}
+                        onChange={() => toggleTagFilter(tag)}
+                        data-testid="tag-checkbox"
+                      />
+                      {tag}
+                    </label>
+                  )
+                )}
+            </div>
+          </div>
         </div>
       </div>
       <div className="task-wrapper" role="display-tasks">

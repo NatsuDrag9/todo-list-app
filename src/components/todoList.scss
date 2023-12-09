@@ -27,7 +27,7 @@
 
   .filter {
     display: flex;
-    width: 50%;
+    width: 80%;
     height: 2%;
     border: 1px solid black;
     transition: height 0.3s ease;
@@ -48,9 +48,42 @@
 
   .filter-elements {
     display: flex;
+    flex-direction: column;
+    align-items: start;
     width: 100%;
-    height: 95%;
-    
+    height: 100%;
+
+    .status-wrapper,
+    .tags-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .status-wrapper {
+      height: 30%;
+      .checkbox-wrapper {
+        margin-left: 1rem;
+
+        label {
+          margin: 0 1rem;
+        }
+      }
+    }
+
+    .tags-wrapper {
+      height: 60%;
+      width: 90%;
+
+      .checkbox-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-left: 1rem;
+      }
+    }
   }
 
   .task-wrapper {
