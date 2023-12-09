@@ -8,8 +8,12 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "clean": "gh-pages-clean"
   },
+  "homepage": "https://natsudrag9.github.io/todo-list-app",
   "dependencies": {
     "axios": "^1.6.2",
     "react": "^18.2.0",
@@ -27,6 +31,7 @@
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "gh-pages": "^6.1.0",
     "jsdom": "^23.0.1",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
