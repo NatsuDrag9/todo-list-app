@@ -15,11 +15,11 @@ Initial render - check for a default state
 User interaction - onClick
 Initial render - all check boxes are unselected
 
-2.) Display task
-(a.) User interaction - hover effect
-(b.) Check for pagination - only 3 tasks per page
+2.) Display task 
+(a.) User interaction - hover effect -- NO TEST FOR THIS AS IT'S NOT INLINE CSS STYLE
+(b.) Check for pagination - only 3 tasks per page (DONE)
 
-3.) Arrows
+3.) Arrows -- NO TEST FOR THIS AS IT'S NOT INLINE CSS STYLE
 (a.) User interaction - onClick
 (b.) Border color is grey and reduce size when no more tasks to be displayed
 (c.) Border color is black and larger size when tasks remain to be displayed
