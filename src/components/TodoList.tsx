@@ -46,8 +46,8 @@ const TodoList = () => {
           return (
             <div className="task" key={index} data-testid={`task${index + 1}`}>
               <p className="name">{task.name}</p>
-              <p className="tag">{task.tag}</p>
-              <p className="status">{task.status}</p>
+              <p className="tag">Tag: {task.tag}</p>
+              <p className="status">Status: {task.status}</p>
             </div>
           );
         })}
