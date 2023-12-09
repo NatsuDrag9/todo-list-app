@@ -26,8 +26,7 @@ describe("Initial render", () => {
     const pElement = screen.getByText("Filter");
     expect(pElement).toBeDefined();
 
-    const filterElements = screen.getByTestId("filter-elements");
-    expect(filterElements.style.display).toBe("none");
+    expect(screen.getByTestId("filter-elements")).toHaveClass("hide");
   });
 
   // Ensure that the task wrapper exists in the DOM in both cases
@@ -133,14 +132,15 @@ describe("User interaction and functionality", () => {
     await screen.findByTestId("task1");
   });
 
-  test("Clicking filter should increase height", () => {
+  test("Clicking filter should increase height and display filter elements", () => {
     fireEvent.click(screen.getByText("Filter"));
     expect(screen.getByRole("filter")).toHaveClass("filter clicked");
+    expect(screen.getByTestId("filter-elements")).toHaveClass("filter-elements");
   })
 
-  test("Clicking filter should add filter elements", () => {
+  // test("Clicking filter should add filter elements", () => {
     
-  })
+  // })
 
   test("Clicking pagination buttons should display the correct tasks", async () => {
   

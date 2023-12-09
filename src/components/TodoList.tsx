@@ -40,8 +40,7 @@ const TodoList = () => {
       >
         <a onClick={() => setIsFilterClicked(!isFilterClicked)}>Filter</a>
         <div
-          className="filter-elements"
-          style={{ display: "none" }}
+          className={`filter-elements ${isFilterClicked ? "" : "hide"}`}
           data-testid="filter-elements"
         ></div>
       </div>
