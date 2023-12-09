@@ -98,7 +98,7 @@ describe("Test API Call", () => {
     try {
       await fetchTasks();
     } catch (error) {
-      expect(error.message).toEqual("Network Error");
+      expect((error as Error).message).toEqual("Network Error");
     }
 
     // Restore the original Axios behavior
