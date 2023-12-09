@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./todoList.scss";
-import { fetchTasks } from "../utils/apiCalls";
-import { TaskInterface } from "../interfaces";
+import { fetchTasks } from "../utils/apiCalls.ts";
+import { TaskInterface } from "../interfaces.ts";
 import { act } from "react-dom/test-utils";
-import { statusData } from "../misc/data";
+import { statusData } from "../misc/data.ts";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState<TaskInterface[] | null>(null);
