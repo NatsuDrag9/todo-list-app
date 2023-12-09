@@ -16,15 +16,15 @@ describe("Initial render", () => {
       name: /To Do List/,
       level: 3,
     });
-    expect(hElement).toBeDefined();
+    expect(hElement).toBeInTheDocument();
   });
 
   test('div with role="filter" must exist and only first <p> element must be displayed', () => {
     const fElement = screen.getByRole("filter");
-    expect(fElement).toBeDefined();
+    expect(fElement).toBeInTheDocument();
 
     const pElement = screen.getByText("Filter");
-    expect(pElement).toBeDefined();
+    expect(pElement).toBeInTheDocument();
 
     expect(screen.getByTestId("filter-elements")).toHaveClass("hide");
   });
@@ -32,7 +32,7 @@ describe("Initial render", () => {
   // Ensure that the task wrapper exists in the DOM in both cases
   test("Task wrapper must exist", () => {
     const taskWrapperElement = screen.getByRole("display-tasks");
-    expect(taskWrapperElement).toBeDefined();
+    expect(taskWrapperElement).toBeInTheDocument();
   });
 
   test("Task should not exist when tasks is null", async () => {
@@ -57,13 +57,13 @@ describe("Initial render", () => {
   test("Arrow wrapper and arrows must exist", () => {
     act(() => {
       const arrowWrapperElement = screen.getByRole("navigation");
-      expect(arrowWrapperElement).toBeDefined();
+      expect(arrowWrapperElement).toBeInTheDocument();
 
       const leftArrowElement = screen.getByRole("previous");
-      expect(leftArrowElement).toBeDefined();
+      expect(leftArrowElement).toBeInTheDocument();
 
       const rightArrowElement = screen.getByRole("next");
-      expect(rightArrowElement).toBeDefined();
+      expect(rightArrowElement).toBeInTheDocument();
     });
   });
 });
@@ -115,7 +115,7 @@ describe("User interaction and functionality", () => {
       { name: "Task 1", tag: "Tag1", status: "Incomplete" },
       { name: "Task 2", tag: "Tag2", status: "Incomplete" },
       { name: "Task 3", tag: "Tag3", status: "Incomplete" },
-      { name: "Task 4", tag: "Tag4", status: "Incomplete" },
+      { name: "Task 4", tag: "Tag4", status: "Complete" },
       { name: "Task 5", tag: "Tag5", status: "Incomplete" },
       { name: "Task 6", tag: "Tag6", status: "Incomplete" },
     ];
@@ -129,7 +129,8 @@ describe("User interaction and functionality", () => {
     render(<TodoList />);
 
     // Wait for the tasks to be loaded (you can use findByTestId for the first task)
-    await screen.findByTestId("task1");
+    // await screen.findByTestId("task1");
+    await screen.findByText("Task 1");
   });
 
   test("Clicking filter should increase height and display filter elements", () => {
@@ -153,28 +154,29 @@ describe("User interaction and functionality", () => {
     });
   });
 
-  // test("Filtering tasks by checkboxes", async () => {
-  //   fireEvent.click(screen.getByText("Filter"));
+  test("Filtering tasks by checkboxes", async () => {
+    fireEvent.click(screen.getByText("Filter"));
   
-  //   const completeCheckbox = screen.getByRole("checkbox", { name: "Complete" });
-  //   fireEvent.click(completeCheckbox);
+    // Check a status checkbox
+    const completeCheckbox = screen.getByRole("checkbox", { name: "Complete" });
+    fireEvent.click(completeCheckbox);
   
-  //   // Check a tag checkbox
-  //   const tagCheckboxes = screen.getAllByTestId("tag-checkbox");
-  //   fireEvent.click(tagCheckboxes[0]);
+    // Check a tag checkbox
+    const tagCheckboxes = screen.getAllByRole("checkbox", { name: /^Tag/ });
+    fireEvent.click(tagCheckboxes[0]);
   
-  //   // Verify that the tasks are filtered correctly
-  //   await waitFor(() => {
-  //     expect(screen.queryByText("Task 1")).toBeNull(); // Incomplete task
-  //     expect(screen.getByText("Task 4")).toBeInTheDocument(); // Complete task
+    // Verify that the tasks are filtered correctly
+    await waitFor(() => {
+      expect(screen.queryByText("Task 1")).toBeNull(); // Incomplete task
+      expect(screen.getByText("Task 4")).toBeInTheDocument(); // Complete task
   
-  //     // Verify that other tasks are not displayed
-  //     expect(screen.queryByText("Task 2")).toBeNull();
-  //     expect(screen.queryByText("Task 3")).toBeNull();
-  //     expect(screen.queryByText("Task 5")).toBeNull();
-  //     expect(screen.queryByText("Task 6")).toBeNull();
-  //   });
-  // });
+      // Verify that other tasks are not displayed
+      expect(screen.queryByText("Task 2")).toBeNull();
+      expect(screen.queryByText("Task 3")).toBeNull();
+      expect(screen.queryByText("Task 5")).toBeNull();
+      expect(screen.queryByText("Task 6")).toBeNull();
+    });
+  });
   
   test("Clicking pagination buttons should display the correct tasks", async () => {
   
