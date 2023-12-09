@@ -146,16 +146,36 @@ describe("User interaction and functionality", () => {
     expect(completeCheckbox).not.toBeChecked();
   
     // Check the tag checkboxes (assuming there are some tags)
-    const tagCheckboxes = screen.getAllByTestId("tag-checkbox");
+    // const tagCheckboxes = screen.getAllByTestId("tag-checkbox");
+    const tagCheckboxes = screen.getAllByRole("checkbox", { name: /^Tag/ });
     tagCheckboxes.forEach((checkbox) => {
       expect(checkbox).not.toBeChecked();
     });
   });
 
-  test("Clicking filter should display all filter elements", () => {
-    
-  })
-
+  // test("Filtering tasks by checkboxes", async () => {
+  //   fireEvent.click(screen.getByText("Filter"));
+  
+  //   const completeCheckbox = screen.getByRole("checkbox", { name: "Complete" });
+  //   fireEvent.click(completeCheckbox);
+  
+  //   // Check a tag checkbox
+  //   const tagCheckboxes = screen.getAllByTestId("tag-checkbox");
+  //   fireEvent.click(tagCheckboxes[0]);
+  
+  //   // Verify that the tasks are filtered correctly
+  //   await waitFor(() => {
+  //     expect(screen.queryByText("Task 1")).toBeNull(); // Incomplete task
+  //     expect(screen.getByText("Task 4")).toBeInTheDocument(); // Complete task
+  
+  //     // Verify that other tasks are not displayed
+  //     expect(screen.queryByText("Task 2")).toBeNull();
+  //     expect(screen.queryByText("Task 3")).toBeNull();
+  //     expect(screen.queryByText("Task 5")).toBeNull();
+  //     expect(screen.queryByText("Task 6")).toBeNull();
+  //   });
+  // });
+  
   test("Clicking pagination buttons should display the correct tasks", async () => {
   
     // Initial page (page 1)

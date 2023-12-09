@@ -109,7 +109,7 @@ const TodoList = () => {
                         value={tag}
                         checked={selectedTags.includes(tag)}
                         onChange={() => toggleTagFilter(tag)}
-                        data-testid="tag-checkbox"
+                        // data-testid="tag-checkbox"
                       />
                       {tag}
                     </label>
