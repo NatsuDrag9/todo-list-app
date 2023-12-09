@@ -88,7 +88,7 @@ const TodoList = () => {
                     <input
                       type="checkbox"
                       value={status}
-                      checked={false}
+                      checked={selectedStatus.includes(status)}
                       onChange={() => toggleStatusFilter(status)}
                     />
                     {status}
