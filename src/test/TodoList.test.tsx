@@ -157,18 +157,18 @@ describe("User interaction and functionality", () => {
   test("Filtering tasks by checkboxes", async () => {
     fireEvent.click(screen.getByText("Filter"));
   
-    // Check a status checkbox
+    // Check the "Complete" status checkbox
     const completeCheckbox = screen.getByRole("checkbox", { name: "Complete" });
     fireEvent.click(completeCheckbox);
   
-    // Check a tag checkbox
+    // Check tag 4 checkbox (assuming there are some tags)
     const tagCheckboxes = screen.getAllByRole("checkbox", { name: /^Tag/ });
-    fireEvent.click(tagCheckboxes[0]);
+    fireEvent.click(tagCheckboxes[3]);
   
     // Verify that the tasks are filtered correctly
     await waitFor(() => {
-      expect(screen.queryByText("Task 1")).toBeNull(); // Incomplete task
-      expect(screen.getByText("Task 4")).toBeInTheDocument(); // Complete task
+      expect(screen.queryByText("Task 1")).toBeNull(); // "Task 1" should still be visible (status is "Incomplete")
+      expect(screen.getByText("Task 4")).toBeInTheDocument(); // "Task 4" is the only task with "Complete" status and the selected tag
   
       // Verify that other tasks are not displayed
       expect(screen.queryByText("Task 2")).toBeNull();
@@ -177,6 +177,7 @@ describe("User interaction and functionality", () => {
       expect(screen.queryByText("Task 6")).toBeNull();
     });
   });
+  
   
   test("Clicking pagination buttons should display the correct tasks", async () => {
   
