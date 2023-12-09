@@ -13,7 +13,7 @@
     "deploy": "gh-pages -d dist",
     "clean": "gh-pages-clean"
   },
-  "homepage": "https://natsudrag9.github.io/todo-list-app",
+  "homepage": "https://natsudrag9.github.io/todo-list-app/",
   "dependencies": {
     "axios": "^1.6.2",
     "react": "^18.2.0",
