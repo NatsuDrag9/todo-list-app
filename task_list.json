@@ -1,0 +1,54 @@
+{
+    "tasks": [
+        {
+            "name": "Grocery shopping",
+            "tag": "Errands",
+            "status": "Incomplete"
+        },
+        {
+            "name": "Finish project report",
+            "tag": "Work",
+            "status": "Incomplete"
+        },
+        {
+            "name": "Call plumber",
+            "tag": "Home",
+            "status": "Incomplete"
+        },
+        {
+            "name": "Schedule car service",
+            "tag": "Maintenance",
+            "status": "Incomplete"
+        },
+        {
+            "name": "Book dentist appointment",
+            "tag": "Health",
+            "status": "Complete"
+        },
+        {
+            "name": "Read 'The Great Gatsby'",
+            "tag": "Reading",
+            "status": "Incomplete"
+        },
+        {
+            "name": "Prepare for Monday's presentation",
+            "tag": "Work",
+            "status": "Incomplete"
+        },
+        {
+            "name": "Donate old clothes",
+            "tag": "Charity",
+            "status": "Complete"
+        },
+        {
+            "name": "Yoga session",
+            "tag": "Fitness",
+            "status": "Incomplete"
+        },
+        {
+            "name": "Plan weekend trip",
+            "tag": "Leisure",
+            "status": "Incomplete"
+        }
+    ]
+}
