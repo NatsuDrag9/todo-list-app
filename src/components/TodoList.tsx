@@ -14,16 +14,14 @@ const TodoList = () => {
   const tasksPerPage = 3;
 
   useEffect(() => {
-    act(() => {
-      fetchTasks()
-        .then((tasks) => {
-          // console.log("Tasks:", tasks);
-          setTasks(tasks);
-        })
-        .catch((error) => {
-          console.error("Failed to fetch tasks:", error);
-        });
-    });
+    fetchTasks()
+      .then((tasks) => {
+        // console.log("Tasks:", tasks);
+        setTasks(tasks);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch tasks:", error);
+      });
   }, []);
 
   const handlePageChange = (page: number) => {
