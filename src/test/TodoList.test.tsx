@@ -4,7 +4,7 @@ import TodoList from "../components/TodoList.tsx";
 import { fetchTasks } from "../utils/apiCalls.ts";
 import { act } from "react-dom/test-utils";
 import MockAdapter from "axios-mock-adapter";
-import axios from "axios";
+import axios from "./axiosTestConfig.ts";
 
 describe("Initial render", () => {
   beforeEach(() => {
@@ -40,7 +40,7 @@ describe("Initial render", () => {
     const mock = new MockAdapter(axios);
 
     // Mock the Axios request to return a response with null
-    mock.onGet("/task_list.json").reply(200, { tasks: null });
+    mock.onGet("../../task_list.json").reply(200, { tasks: null });
 
     await act(async () => {
       await fetchTasks();

@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from '../test/axiosTestConfig';  // Uncomment this for testing
+// import axios from "axios"; // Uncomment this for production
 import { TaskInterface, TasksResponseInterface } from "../interfaces";
 
 export async function fetchTasks(): Promise<TaskInterface[]> {
