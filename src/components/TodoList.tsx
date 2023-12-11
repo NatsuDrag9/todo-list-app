@@ -82,9 +82,9 @@ const TodoList = () => {
           <div className="status-wrapper">
             <h4>Status: </h4>
             <div className="checkbox-wrapper">
-              {statusData.map((status) => {
+              {statusData.map((status, index) => {
                 return (
-                  <label>
+                  <label key={index}>
                     <input
                       type="checkbox"
                       value={status}
@@ -102,8 +102,8 @@ const TodoList = () => {
             <div className="checkbox-wrapper">
               {tasks &&
                 Array.from(new Set(tasks.map((task) => task.tag))).map(
-                  (tag) => (
-                    <label key={tag}>
+                  (tag, index) => (
+                    <label key={index}>
                       <input
                         type="checkbox"
                         value={tag}
