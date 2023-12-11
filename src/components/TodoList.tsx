@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./todoList.scss";
 import { fetchTasks } from "../utils/apiCalls.ts";
 import { TaskInterface } from "../interfaces.ts";
-import { act } from "react-dom/test-utils";
 import { statusData } from "../misc/data.ts";
 
 const TodoList = () => {
