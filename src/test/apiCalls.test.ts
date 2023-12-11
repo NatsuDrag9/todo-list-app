@@ -12,7 +12,7 @@ describe("Test API Call", () => {
 
   test("fetchTasks returns a list of tasks on successful fetch", async () => {
     // Mock the Axios request to return a predefined response
-    mock.onGet("../../task_list.json").reply(200, {
+    mock.onGet("/task_list.json").reply(200, {
       tasks: [{ name: "Task 1", tag: "Tag1", status: "Incomplete" }],
     });
 
@@ -24,7 +24,7 @@ describe("Test API Call", () => {
 
   test("fetchTasks handles fetch failure", async () => {
     // Mock the Axios request to return an error response
-    mock.onGet("../../task_list.json").reply(500);
+    mock.onGet("/task_list.json").reply(500);
 
     try {
       await fetchTasks();

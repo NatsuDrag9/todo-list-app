@@ -4,7 +4,7 @@ import { TaskInterface, TasksResponseInterface } from "../interfaces";
 
 export async function fetchTasks(): Promise<TaskInterface[]> {
   try {
-    const response = await axios.get('../../task_list.json');
+    const response = await axios.get('/task_list.json');
 
     if (response.status !== 200) {
       throw new Error('Network response was not ok');

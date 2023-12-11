@@ -40,7 +40,7 @@ describe("Initial render", () => {
     const mock = new MockAdapter(axios);
 
     // Mock the Axios request to return a response with null
-    mock.onGet("../../task_list.json").reply(200, { tasks: null });
+    mock.onGet("/task_list.json").reply(200, { tasks: null });
 
     await act(async () => {
       await fetchTasks();
@@ -82,7 +82,7 @@ describe("User interaction and functionality", () => {
     ];
 
     // Mock the Axios request to return a response with new tasks
-    mock.onGet("../../task_list.json").reply(200, {
+    mock.onGet("/task_list.json").reply(200, {
       tasks: mockTasks,
     });
 
