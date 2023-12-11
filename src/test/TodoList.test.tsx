@@ -36,7 +36,6 @@ describe("Initial render", () => {
   });
 
   test("Task should not exist when tasks is null", async () => {
-
     // Create an instance of axios-mock-adapter
     const mock = new MockAdapter(axios);
 
@@ -69,11 +68,13 @@ describe("Initial render", () => {
 });
 
 describe("Test API Call", () => {
+  let mock: MockAdapter;
+  beforeEach(() => {
+    // Create an instance of axios-mock-adapter
+    mock = new MockAdapter(axios);
+  });
 
   test("fetchTasks returns a list of tasks on successful fetch", async () => {
-    // Create an instance of axios-mock-adapter
-    const mock = new MockAdapter(axios);
-
     // Mock the Axios request to return a predefined response
     mock.onGet("../../task_list.json").reply(200, {
       tasks: [{ name: "Task 1", tag: "Tag1", status: "Incomplete" }],
@@ -83,15 +84,9 @@ describe("Test API Call", () => {
     expect(tasks).toEqual([
       { name: "Task 1", tag: "Tag1", status: "Incomplete" },
     ]);
-
-    // Restore the original Axios behavior
-    mock.restore();
   });
 
   test("fetchTasks handles fetch failure", async () => {
-    // Create an instance of axios-mock-adapter
-    const mock = new MockAdapter(axios);
-
     // Mock the Axios request to return an error response
     mock.onGet("../../task_list.json").reply(500);
 
@@ -100,14 +95,16 @@ describe("Test API Call", () => {
     } catch (error) {
       expect((error as Error).message).toEqual("Network Error");
     }
+  });
 
+  afterEach(() => {
     // Restore the original Axios behavior
     mock.restore();
   });
 });
 
 describe("User interaction and functionality", () => {
-  let mock:MockAdapter; 
+  let mock: MockAdapter;
   beforeEach(async () => {
     mock = new MockAdapter(axios);
 
@@ -122,7 +119,7 @@ describe("User interaction and functionality", () => {
 
     // Mock the Axios request to return a response with new tasks
     mock.onGet("../../task_list.json").reply(200, {
-      tasks: mockTasks
+      tasks: mockTasks,
     });
 
     // Render the component
@@ -136,16 +133,20 @@ describe("User interaction and functionality", () => {
   test("Clicking filter should increase height and display filter elements", () => {
     fireEvent.click(screen.getByText("Filter"));
     expect(screen.getByRole("filter")).toHaveClass("filter clicked");
-    expect(screen.getByTestId("filter-elements")).toHaveClass("filter-elements");
-  })
+    expect(screen.getByTestId("filter-elements")).toHaveClass(
+      "filter-elements"
+    );
+  });
 
   test("Checkboxes are unselected initially", () => {
     // Check the status checkboxes
-    const incompleteCheckbox = screen.getByRole("checkbox", { name: "Incomplete" });
+    const incompleteCheckbox = screen.getByRole("checkbox", {
+      name: "Incomplete",
+    });
     const completeCheckbox = screen.getByRole("checkbox", { name: "Complete" });
     expect(incompleteCheckbox).not.toBeChecked();
     expect(completeCheckbox).not.toBeChecked();
-  
+
     // Check the tag checkboxes (assuming there are some tags)
     // const tagCheckboxes = screen.getAllByTestId("tag-checkbox");
     const tagCheckboxes = screen.getAllByRole("checkbox", { name: /^Tag/ });
@@ -156,20 +157,20 @@ describe("User interaction and functionality", () => {
 
   test("Filtering tasks by checkboxes", async () => {
     fireEvent.click(screen.getByText("Filter"));
-  
+
     // Check the "Complete" status checkbox
     const completeCheckbox = screen.getByRole("checkbox", { name: "Complete" });
     fireEvent.click(completeCheckbox);
-  
+
     // Check tag 4 checkbox (assuming there are some tags)
     const tagCheckboxes = screen.getAllByRole("checkbox", { name: /^Tag/ });
     fireEvent.click(tagCheckboxes[3]);
-  
+
     // Verify that the tasks are filtered correctly
     await waitFor(() => {
       expect(screen.queryByText("Task 1")).toBeNull(); // "Task 1" should still be visible (status is "Incomplete")
       expect(screen.getByText("Task 4")).toBeInTheDocument(); // "Task 4" is the only task with "Complete" status and the selected tag
-  
+
       // Verify that other tasks are not displayed
       expect(screen.queryByText("Task 2")).toBeNull();
       expect(screen.queryByText("Task 3")).toBeNull();
@@ -177,34 +178,32 @@ describe("User interaction and functionality", () => {
       expect(screen.queryByText("Task 6")).toBeNull();
     });
   });
-  
-  
+
   test("Clicking pagination buttons should display the correct tasks", async () => {
-  
     // Initial page (page 1)
     expect(screen.getByText("Task 1")).toBeInTheDocument();
     expect(screen.getByText("Task 2")).toBeInTheDocument();
     expect(screen.getByText("Task 3")).toBeInTheDocument();
     expect(screen.queryByText("Task 4")).toBeNull(); // Task 4 should not be visible
-  
+
     // Click the "Next" button to go to page 2
     fireEvent.click(screen.getByText("Next"));
-  
+
     // Wait for the component to update
     await waitFor(() => screen.getAllByTestId(/^task\d+$/));
-  
+
     // Page 2
     expect(screen.getByText("Task 4")).toBeInTheDocument();
     expect(screen.getByText("Task 5")).toBeInTheDocument();
     expect(screen.getByText("Task 6")).toBeInTheDocument();
     expect(screen.queryByText("Task 1")).toBeNull(); // Task 1 should not be visible
-  
+
     // Click the "Previous" button to go back to page 1
     fireEvent.click(screen.getByText("Previous"));
-  
+
     // Wait for the component to update
     await waitFor(() => screen.getAllByTestId(/^task\d+$/));
-  
+
     // Back to page 1
     expect(screen.getByText("Task 1")).toBeInTheDocument();
     expect(screen.getByText("Task 2")).toBeInTheDocument();
@@ -215,5 +214,5 @@ describe("User interaction and functionality", () => {
   afterEach(async () => {
     // Restore the original Axios behavior
     mock.restore();
-  })
+  });
 });
