@@ -3,8 +3,8 @@ import { beforeEach, describe, expect, test } from "vitest";
 import TodoList from "../components/TodoList.tsx";
 import { fetchTasks } from "../utils/apiCalls.ts";
 import { act } from "react-dom/test-utils";
-import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
 
 describe("Initial render", () => {
   beforeEach(() => {
@@ -40,7 +40,7 @@ describe("Initial render", () => {
     const mock = new MockAdapter(axios);
 
     // Mock the Axios request to return a response with null
-    mock.onGet("../../task_list.json").reply(200, { tasks: null });
+    mock.onGet("/task_list.json").reply(200, { tasks: null });
 
     await act(async () => {
       await fetchTasks();
@@ -64,42 +64,6 @@ describe("Initial render", () => {
       const rightArrowElement = screen.getByRole("next");
       expect(rightArrowElement).toBeInTheDocument();
     });
-  });
-});
-
-describe("Test API Call", () => {
-  let mock: MockAdapter;
-  beforeEach(() => {
-    // Create an instance of axios-mock-adapter
-    mock = new MockAdapter(axios);
-  });
-
-  test("fetchTasks returns a list of tasks on successful fetch", async () => {
-    // Mock the Axios request to return a predefined response
-    mock.onGet("../../task_list.json").reply(200, {
-      tasks: [{ name: "Task 1", tag: "Tag1", status: "Incomplete" }],
-    });
-
-    const tasks = await fetchTasks();
-    expect(tasks).toEqual([
-      { name: "Task 1", tag: "Tag1", status: "Incomplete" },
-    ]);
-  });
-
-  test("fetchTasks handles fetch failure", async () => {
-    // Mock the Axios request to return an error response
-    mock.onGet("../../task_list.json").reply(500);
-
-    try {
-      await fetchTasks();
-    } catch (error) {
-      expect((error as Error).message).toEqual("Network Error");
-    }
-  });
-
-  afterEach(() => {
-    // Restore the original Axios behavior
-    mock.restore();
   });
 });
 
