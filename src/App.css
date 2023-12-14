@@ -1,6 +1,10 @@
 @font-face {
   font-family: "Bookman Old Style";
-  src: url("../fonts/Bookman\ Old\ Style\ Regular/Bookman_Old_Style_Regular.ttf")
+  /* Uncomment for production */
+  src: url("/fonts/Bookman\ Old\ Style\ Regular/Bookman_Old_Style_Regular.ttf")
+
+  /* Uncomment for development */
+  /* src: url("../public/fonts/Bookman\ Old\ Style\ Regular/Bookman_Old_Style_Regular.ttf")  */
     format("truetype");
   font-weight: 400; /* Adjust font-weight if needed */
   font-style: normal; /* Adjust font-style if needed */

@@ -19,7 +19,7 @@ describe("Initial render", () => {
     expect(hElement).toBeInTheDocument();
   });
 
-  test('div with role="filter" must exist and only first <p> element must be displayed', () => {
+  test('div with role="filter" must exist and only first <a> element must be displayed', () => {
     const fElement = screen.getByRole("filter");
     expect(fElement).toBeInTheDocument();
 

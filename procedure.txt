@@ -5,3 +5,13 @@
 5.) Implemented test for pagination
 6.) Implemeted initial rendering of checkboxes
 7.) Implemented filter functionality
+
+For 100% scalability, we can use a central store for state management like RTK, Zustand or signals. For this app, signals would be a good choice. Make the api call and store the tasks in a signal. Then ensure caching to prevent making calls for redundant data
+
+
+Evaluating Parameters (on a scale of 10 for each):
+1.) TDD approach
+2.) Clean code -- linting, variable names, 
+3.) Test coverage
+4.) Implementation -- full functionality and CSS
+5.) Test quality -- how effective is the test in capturing requirements, edge cases

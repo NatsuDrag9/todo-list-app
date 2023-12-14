@@ -14,5 +14,5 @@ export default defineConfig({
     // since parsing CSS is slow
     css: true,
   },
-  base: "https://natsudrag9.github.io/todo-list-app/" // Uncomment for production
+  // base: "/todo-list-app/" // Uncomment for production
 })

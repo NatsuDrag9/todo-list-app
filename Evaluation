@@ -1,0 +1,90 @@
+Khalid:
+Evaluating Parameters (on a scale of 10 for each):
+1.) TDD approach (Score - 8)
+The design doesn't clearly indicate whether this app follows a TDD approach. I know that this is an ambiguous point so I gave the score based on tests
+
+2.) Clean code -- linting, variable names, readability, project structure (Score - 5)
+Remarks: Readability
+Separate different categories of tests (initial, tests that use apis, functionalities, etc.) in todo.test.tsx file
+Remove code that is to be ignored from the file -- last test in the todo.test.tsx file
+Recommended to move "render(<Todo />)" to beforeEachin todo.test.tsx file
+Recommended to place all state declaration initially in the component
+Recommended to minimize usage of data-testid as it's a selector intended for testing [1].
+
+Variable Names
+All good
+
+Linting errors 
+Type is missing for parameters in getUniqueValues, handleStatusChange, handleTagChange
+
+Project Structure
+Remove files (todocompleted.tsx) that are to be ignored from the repo (ignored for scoring)
+Recommended to move the api to a json file for better project structure in todo.tsx
+
+3.) Test coverage (Score- NA)
+No provision to check test coverage
+
+4.) Implementation -- full functionality and CSS (Score- 6)
+Remarks:
+Application works overall
+No styling
+Filter feature does not filter tasks that have a particular tag and are pending
+
+5.) Test quality -- how effective is the test in capturing requirements, edge cases (Score- 7)
+Remarks:
+Initial rendering -- (done)
+A task with any tag can be pending. No test for filtering pending tasks. -- (not done)
+Testing api response from server -- (not done)
+Liked the test for disabling/enabling buttons based on application state -- (good and done)
+Navigation and its dependence on pagination -- (done)
+Pagination functionality i.e. testing whether a page displays only 3 tasks -- (not done)
+
+Total score - 26 + NA 
+----------------------------------------------------------------------------------------------------------------------
+
+Bindu:
+Evaluating Parameters (on a scale of 10 for each):
+
+1.) TDD approach (Score 7)
+The design doesn't clearly indicate whether this app follows a TDD approach. I know that this is an ambiguous point so I gave the score based on tests
+
+2.) Clean code -- linting, variable names, readability, project structure (Score - 7)
+Readability
+Separated different categories of tests (initial, tests that use apis, functionalities, etc.) in todo.test.tsx file (good)
+Recommended to move "render(<Todo />)" to beforeEachin todo.test.tsx file
+Overall, neat and clean code
+
+Linting errors -
+Remove unused imports in todo.test.tsx
+
+Variable names
+All good
+
+Project Structure
+Recommended to separate interfaces into another file titled interfaces.ts
+
+3.) Test coverage (Score - NA)
+No provision to check test coverage 
+
+4.) Implementation -- full functionality and CSS (Score - 7)
+Nice styling
+API CORS error as could not find todo_data in the project dir (ignored for scoring)
+Filter functionality not implemented
+
+5.) Test quality -- how effective is the test in capturing requirements, edge cases (Score - 6)
+Testing api call from server -- (not done)
+Test for filter functionality as it's not implemented -- (not done)
+Test for prev button initial state being disbaled -- (not done)
+Test for next button initial state being disbaled -- (not done)
+Pagination functionality i.e. testing whether a page displays only 5 (as items per page = 5 here) tasks -- (not done)
+
+Total score - 28 + NA
+
+References
+[1] Chatgpt: Use data-testid for Testing Only: If your primary goal is to create selectors specifically for testing purposes and you want minimal interference with styling or semantics, data-testid might be a good choice.
+
+Use roles for Accessibility and Testing: If you are aiming for a balance between accessibility and testing, using ARIA roles that provide semantic meaning and also serve as test selectors can be a good approach.
+
+Stackexchange - https://stackoverflow.com/questions/55151142/react-testing-library-why-use-test-id#:~:text=While%20the%20use%20of%20data-testid%20designates,changed%20when%20the%20implementation%20is%20changed.&text=While%20the%20use%20of,the%20implementation%20is%20changed.&text=use%20of%20data-testid%20designates,changed%20when%20the%20implementation
+
+[2]
